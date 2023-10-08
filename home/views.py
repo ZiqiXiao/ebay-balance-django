@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
@@ -30,7 +31,8 @@ class EbayBalanceView(View):
         gift_card_no = request.POST.get('giftCardNo')
 
         # 2. 将数据发送给另一个容器中的服务
-        response = requests.get('http://172.17.0.3:8111/check-balance', params={
+        fastapi_banckend_host = os.environ.get('FASTAPI_BACKEND_HOST', 'http://172.17.0.3')
+        response = requests.get(f'{fastapi_banckend_host}:8111/check-balance', params={
             'gift_card_no': gift_card_no
         })
         
