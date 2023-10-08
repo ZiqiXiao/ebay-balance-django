@@ -1,0 +1,29 @@
+[
+    {
+        "model": "home.CheckingHistory",
+        "pk": 1,
+        "fields": {
+            "gift_card_no": "1234567890123",
+            "balance": "100.00",
+            "time": "2023-10-05T00:00:00Z"
+        }
+    },
+    {
+        "model": "home.CheckingHistory",
+        "pk": 2,
+        "fields": {
+            "gift_card_no": "2234567890123",
+            "balance": "200.00",
+            "time": "2023-10-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "home.CheckingHistory",
+        "pk": 3,
+        "fields": {
+            "gift_card_no": "3234567890123",
+            "balance": "300.00",
+            "time": "2023-10-07T00:00:00Z"
+        }
+    }
+]

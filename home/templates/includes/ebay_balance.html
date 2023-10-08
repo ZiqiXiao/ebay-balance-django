@@ -1,0 +1,170 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<div class="content">
+  <div class="row">
+    {% comment %}
+    <ol class="breadcrumb bg-transparent ml-3">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="#">Library</a>
+      </li>
+      <li class="breadcrumb-item active">Data</li>
+    </ol>
+    {% endcomment %}
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body text-center">
+          <h2 class="card-title">输入礼品卡号</h2>
+          <div style="width: 50%; margin: auto">
+            <form method="post" id="giftCardNoForm" class="form">
+              {% csrf_token %}
+              <input
+                type="number"
+                class="form-control"
+                name="giftCardNo"
+                id="giftCardNo"
+                placeholder="每次输入一个礼品卡号进行查询"
+                style="width: 100%"
+              />
+              <div style="text-align: center; margin-top: 10px">
+                <button type="submit" class="btn btn-primary">查询</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">历史记录</h2>
+          </div>
+          <div class="card-body">
+            <div class="toolbar">
+              <!--        Here you can write extra buttons/actions for the toolbar              -->
+            </div>
+            <table id="datatable" class="table table-striped table-history">
+              <thead>
+                <tr>
+                  <th>卡号</th>
+                  <th>余额</th>
+                  <th>日期</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %} {% block extrastyle %}
+  <style>
+    .main-panel > .content {
+      padding-left: 30px;
+    }
+
+    .table-history {
+      font-size: 18px;
+    }
+
+    .table-history thead tr th {
+      font-size: 18px;
+    }
+
+    .dataTables_filter label {
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+    .dataTables_filter input {
+      vertical-align: middle;
+      font-size: 15px !important;
+      border: 1px solid #aaa;
+    }
+
+    .dataTables_length label {
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+    .dataTables_length select {
+      vertical-align: middle;
+      font-size: 15px !important;
+    }
+  </style>
+  {% endblock extrastyle %} {% block extra_js %}
+  <script type="text/javascript">
+    document
+      .getElementById("giftCardNoForm")
+      .addEventListener("submit", function (e) {});
+
+    $(document).ready(function () {});
+
+    $(document).ready(function () {
+      $("#giftCardNoForm").on("submit", function (e) {
+        e.preventDefault(); // 阻止表单的默认提交行为
+
+        var giftCardNo = document.getElementById("giftCardNo").value;
+        if (giftCardNo == "") {
+          alert("请输入礼品卡号");
+          e.preventDefault(); // 阻止表单提交
+          return;
+        }
+        if (giftCardNo.length != 13) {
+          alert("请输入13位礼品卡号");
+          e.preventDefault(); // 阻止表单提交
+          return;
+        }
+        var formData = $(this).serialize(); // 序列化表单数据
+
+        $.ajax({
+          type: "POST",
+          data: formData,
+          success: function (response) {
+            // 处理服务器的响应
+            alert("查询成功，页面即将刷新~");
+            location.reload();
+          },
+          error: function (xhr, status, error) {
+            // 处理错误
+            alert("查询失败！" + error);
+          },
+        });
+      });
+
+
+      var data = JSON.parse('{{ history|safe }}');
+        var formattedData = data.map(function(item) {
+            return {
+                gift_card_no: item.fields.gift_card_no,
+                balance: item.fields.balance,
+                time: item.fields.time,
+            };
+        });
+      $("#datatable").DataTable({
+        data: formattedData,
+        columns: [
+          { data: "gift_card_no", title: "卡号" },
+          { data: "balance", title: "余额" },
+          { data: "time", title: "查询时间" },
+        ],
+        pagingType: "full_numbers",
+        lengthMenu: [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"],
+        ],
+        order: [[2, "desc"]],
+        responsive: false,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json",
+          zeroRecords: "对不起没有数据",
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        },
+      });
+    });
+  </script>
+  {% endblock extra_js %}
+</div>
