@@ -5,6 +5,7 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV GITHUB_TOKEN=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
+ENV FASTAPI_BACKEND_HOST=http://nginx_fastapi
 
 RUN apt-get update && apt install git -y
 

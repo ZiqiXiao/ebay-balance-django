@@ -1,4 +1,5 @@
 import os
+import pytz
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
@@ -44,7 +45,13 @@ class EbayBalanceView(View):
             CheckingHistory.objects.create(
                 gift_card_no=gift_card_no,
                 balance=data['balance'],
-                time=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                time=datetime.now(pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S')
             )
-            # 4. 刷新页面
             return HttpResponse('success')
+
+        elif response.status_code == 503:
+            return HttpResponse('当前没有可用端口，请等一下~', status=503)
+        
+        else:
+            return HttpResponse('其他内部错误！', status=500)
+        

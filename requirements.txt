@@ -3,6 +3,7 @@ gunicorn
 python-dotenv
 whitenoise
 requests
+pytz
 
 # NOTE: Please don't commit GITHUB_TOKEN on GitHub.
 # !!! It will be automatically invalidated by GitHub !!!
