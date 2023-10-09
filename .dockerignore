@@ -1,1 +1,11 @@
 env
+__pycache__
+.devcontainer
+.vscode
+CHANGELOG.md
+docker-build.sh
+nginx-setup.sh
+README.md
+README_deploy.md
+LICENSE.md
+.gitignore
