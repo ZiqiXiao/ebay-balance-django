@@ -3,7 +3,7 @@ stages:          # List of stages for jobs, and their order of execution
   - test
 
 variables:
-    DOCKER_IMAGE_NAME: ziqix/ebay-balance-fastapi
+    DOCKER_IMAGE_NAME: ziqix/ebay-balance-django
     DOCKER_IMAGE_TAG: 0.1.0
 
 docker-build:

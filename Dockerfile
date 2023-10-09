@@ -16,8 +16,6 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-RUN chmod +x nginx-setup.sh
-RUN NGINX_CONFIG_PATH='/app/nginx/appseed-app.conf' /app/nginx-setup.sh
 
 # running migrations
 RUN python manage.py migrate
