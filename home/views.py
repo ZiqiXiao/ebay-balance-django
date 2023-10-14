@@ -30,9 +30,9 @@ class EbayBalanceView(View):
             }
             for item in history
         ]
-        history = json.dumps(formatted_history)
+        history_json = json.dumps(formatted_history)
         context = {
-            'history': formatted_history,
+            'history': history_json,
         }
 
         return render(request, 'includes/ebay_balance.html', context)

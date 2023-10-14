@@ -136,15 +136,15 @@
 
 
       var data = JSON.parse('{{ history|safe }}');
-        var formattedData = data.map(function(item) {
-            return {
-                gift_card_no: item.fields.gift_card_no,
-                balance: item.fields.balance,
-                time: item.fields.time,
-            };
-        });
+        // var formattedData = data.map(function(item) {
+        //     return {
+        //         gift_card_no: item.fields.gift_card_no,
+        //         balance: item.fields.balance,
+        //         time: item.fields.time,
+        //     };
+        // });
       $("#datatable").DataTable({
-        data: formattedData,
+        data: data,
         columns: [
           { data: "gift_card_no", title: "卡号" },
           { data: "balance", title: "余额" },
