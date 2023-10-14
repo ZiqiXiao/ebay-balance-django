@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .models import CheckingHistory
 from django.core import serializers
+from django.utils import timezone
 import json
 
 import requests
@@ -26,7 +27,7 @@ class EbayBalanceView(View):
             {
                 'gift_card_no': item.gift_card_no,
                 'balance': item.balance,
-                'time': item.time.strftime('%Y-%m-%d %H:%M:%S')
+                'time': timezone.localtime(item.time, pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S')
             }
             for item in history
         ]

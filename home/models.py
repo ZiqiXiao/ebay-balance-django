@@ -8,5 +8,4 @@ import pytz
 class CheckingHistory(models.Model):
     gift_card_no = models.CharField(max_length=13)
     balance = models.CharField(max_length=10)
-    time = models.DateTimeField(
-        default=datetime.now(pytz.timezone('Asia/Shanghai')))
+    time = models.DateTimeField()
