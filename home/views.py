@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .models import CheckingHistory
 from django.core import serializers
+import json
 
 import requests
 from datetime import datetime
@@ -29,6 +30,7 @@ class EbayBalanceView(View):
             }
             for item in history
         ]
+        history = json.dumps(formatted_history)
         context = {
             'history': formatted_history,
         }
