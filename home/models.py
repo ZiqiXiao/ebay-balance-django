@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone.now()
 
 # Create your models here.
 
@@ -6,4 +7,4 @@ from django.db import models
 class CheckingHistory(models.Model):
     gift_card_no = models.CharField(max_length=13)
     balance = models.CharField(max_length=10)
-    time = models.DateTimeField(auto_now_add=True)
+    time = models.DateTimeField(default=timezone.now)
