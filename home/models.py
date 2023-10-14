@@ -7,4 +7,4 @@ from django.utils import timezone
 class CheckingHistory(models.Model):
     gift_card_no = models.CharField(max_length=13)
     balance = models.CharField(max_length=10)
-    time = models.CharField(max_length=20)
+    time = models.DateTimeField()

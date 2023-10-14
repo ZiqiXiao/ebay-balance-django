@@ -26,7 +26,7 @@ class EbayBalanceView(View):
             {
                 'gift_card_no': item.gift_card_no,
                 'balance': item.balance,
-                'time': item.time
+                'time': item.time.strftime('%Y-%m-%d %H:%M:%S')
             }
             for item in history
         ]
@@ -56,8 +56,7 @@ class EbayBalanceView(View):
             CheckingHistory.objects.create(
                 gift_card_no=gift_card_no,
                 balance=data['balance'],
-                time=datetime.now(pytz.timezone('Asia/Shanghai')
-                                  ).strftime('%Y-%m-%d %H:%M:%S')
+                time=datetime.now(pytz.timezone('Asia/Shanghai'))
             )
             return HttpResponse('sucess', status=200)
 
