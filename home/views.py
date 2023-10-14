@@ -56,7 +56,7 @@ class EbayBalanceView(View):
                 balance=data['balance'],
                 # time=datetime.now(pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S')
             )
-            return HttpResponse('success')
+            return HttpResponse('sucess', status=200)
 
         elif response.status_code == 503:
             return HttpResponse('当前没有可用端口，请等一下~', status=503)
