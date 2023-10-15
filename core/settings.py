@@ -34,12 +34,11 @@ if not SECRET_KEY:
 DEBUG = 'RENDER' not in os.environ
 
 # HOSTs List
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '64.176.210.156', '159.203.76.40']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '159.65.172.57']
 
 # Add here your deployment HOSTS
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http://127.0.0.1:8000', 'http://127.0.0.1:5085',
-                        'http://64.176.210.156:8080', 'http://64.176.210.156:5085',
-                        'http://159.203.76.40:8080', 'http://159.203.76.40:5085',]
+                        'http://159.65.172.57:8080', 'http://159.65.172.57:5085']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
