@@ -18,7 +18,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()  # take environment variables from .env.
-host_ip = os.getenv('IP', 'http://localhost')
+host_ip = os.getenv('IP', 'localhost')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +40,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '159.65.172.57', host_ip]
 # Add here your deployment HOSTS
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost:5085', 'http://127.0.0.1:8000', 'http://127.0.0.1:5085',
                         'http://159.65.172.57:8080', 'http://159.65.172.57:5085',
-                        f'{host_ip}:8080', f'{host_ip}:5085'
+                        f'http://{host_ip}:8080', f'http://{host_ip}:5085'
                         ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
