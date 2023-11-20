@@ -7,10 +7,10 @@ variables:
     DOCKER_IMAGE_TAG: 0.1.0
 
 docker-build:
-  image: docker:rc-git
+  image: docker:24.0.5
   stage: build
   services:
-    - docker:dind
+    - docker:24.0.5-dind
   before_script:
     - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSW"
   script:
