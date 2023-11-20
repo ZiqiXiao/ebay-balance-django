@@ -7,7 +7,7 @@ variables:
     DOCKER_IMAGE_TAG: 0.1.0
 
 docker-build:
-  image: docker:latest
+  image: docker:rc-git
   stage: build
   services:
     - docker:dind
